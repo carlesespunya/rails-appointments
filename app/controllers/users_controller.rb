@@ -24,6 +24,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    Appointment.where(patient_id: current_user.id).or(Appointment.where(doctor_id: current_user.id)).destroy_all
     current_user.destroy
 
     redirect_to root_path, notice: "Account was successfully deleted."
@@ -32,6 +33,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:avatar, :name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:avatar, :city, :name, :email, :password, :password_confirmation)
   end
 end

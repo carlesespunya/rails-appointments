@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   has_many :articles, dependent: :destroy
-  has_many :appointments, dependent: :destroy
+  has_many :appointments
 
   validates :role, inclusion: { in: ROLES, message: "Role must be 'Patient' or 'Doctor'" }
 
