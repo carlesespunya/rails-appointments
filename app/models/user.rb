@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  ROLES = %w[Patient Doctor].freeze
+
   devise :database_authenticatable,
          :registerable,
          :recoverable,
@@ -7,6 +9,9 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   has_many :articles, dependent: :destroy
+  has_many :appointments, dependent: :destroy
+
+  validates :role, inclusion: { in: ROLES, message: "Role must be 'Patient' or 'Doctor'" }
 
   def name
     @name ||= self[:name].presence || email.split("@").first
