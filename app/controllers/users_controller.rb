@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :require_doctor, only: [:index]
 
   def index
     @q = User.ransack(params[:q])
-    @pagy, @users = pagy(@q.result.order(created_at: :desc), items: 5)
+    @pagy, @users = pagy(@q.result.where(role: 'Doctor').order(created_at: :desc), items: 5)
   end
 
   def show
@@ -34,5 +35,11 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:avatar, :city, :name, :email, :password, :password_confirmation)
+  end
+
+  def require_doctor
+    if current_user.role == 'Doctor'
+      redirect_to root_path, alert: "You must be a doctor to access this page."
+    end
   end
 end

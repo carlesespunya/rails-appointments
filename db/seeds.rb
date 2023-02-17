@@ -2,9 +2,17 @@ User.destroy_all
 Appointment.destroy_all
 
 User.create!(
-  name: "admin",
-  email: "admin@mail.com",
+  name: "patient",
+  email: "patient@mail.com",
   role: 'Patient',
+  city: Faker::Address.city,
+  password: "123123123"
+)
+
+User.create!(
+  name: "doctor",
+  email: "doctor@mail.com",
+  role: 'Doctor',
   city: Faker::Address.city,
   password: "123123123"
 )

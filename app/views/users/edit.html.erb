@@ -1,4 +1,4 @@
-<h1>My account</h1>
+<h1>My <%= current_user.role %> account</h1>
 
 <%= form_with(model: current_user) do |form| %>
   <%= render "application/error_messages", object: current_user %>
