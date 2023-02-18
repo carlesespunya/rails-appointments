@@ -5,17 +5,17 @@
 
   <div>
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, required: true %>
   </div>
 
   <div>
     <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
   </div>
 
   <div class="mb-4 mt-8">
     <%= f.label :in_wich_purpose_will_you_user_the_web? %>
-    <%= f.select :role, ['Patient', 'Doctor'] %>
+    <%= f.select :role, ['Patient', 'Doctor'], required: true %>
   </div>
 
   <div>
@@ -25,12 +25,12 @@
 
   <div>
     <%= f.label :password %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", required: true %>
   </div>
 
   <div>
     <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
   </div>
 
   <div class="form-actions">

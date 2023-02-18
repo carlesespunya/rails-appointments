@@ -1,0 +1,5 @@
+<h1>Book Appointment</h1>
+<p class="text-xl">Doctor: <strong><%= @doctor.name %></strong></p>
+<p>City: <strong><%= @doctor.city %></strong></p>
+
+<%= render "form", appointment: @appointment, doctor: @doctor %>

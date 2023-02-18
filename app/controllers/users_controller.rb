@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_doctor, only: [:index]
+  before_action :require_patient, only: %i[index]
 
   def index
     @q = User.ransack(params[:q])
@@ -35,11 +35,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:avatar, :city, :name, :email, :password, :password_confirmation)
-  end
-
-  def require_doctor
-    if current_user.role == 'Doctor'
-      redirect_to root_path, alert: "You must be a doctor to access this page."
-    end
   end
 end
