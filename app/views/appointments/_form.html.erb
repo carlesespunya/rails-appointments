@@ -1,16 +1,16 @@
 <%= form_with(model: appointment) do |form| %>
   <%= render "application/error_messages", object: appointment %>
 
-  <%= form.hidden_field :doctor_id, value: doctor.id %>
+  <%= form.hidden_field :doctor_id, value: doctor.id,  required: true %>
 
   <div>
     <%= form.label :appointment_date %>
-    <%= form.date_field :appointment_date, min: Date.today %>
+    <%= form.date_field :appointment_date, min: Date.today,  required: true %>
   </div>
 
   <div>
     <%= form.label :appointment_time %>
-    <%= form.select :appointment_time, (9..18).map { |h| ["#{h}:00", "#{h}:00"] } %>
+    <%= form.select :appointment_time, (9..18).map { |h| ["#{h}:00", "#{h}:00"] },  required: true %>
   </div>
 
   <div class="mt-4">

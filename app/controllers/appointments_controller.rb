@@ -8,9 +8,12 @@ class AppointmentsController < ApplicationController
   end
 
   def new
-    @doctor = User.find(params[:user_id])
-    @appointment = Appointment.new
-    render layout: false
+    if params[:user_id].blank?
+      redirect_to users_path, alert: "Please select a doctor."
+    else
+      @doctor = User.find(params[:user_id])
+      @appointment = Appointment.new
+    end
   end
 
   def create
@@ -32,6 +35,6 @@ class AppointmentsController < ApplicationController
   private
 
   def appointment_params
-    params.require(:appointment).permit(:appointment_date, :doctor_id)
+    params.require(:appointment).permit(:appointment_date, :appointment_time, :doctor_id)
   end
 end
