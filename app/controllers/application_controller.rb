@@ -2,10 +2,6 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to request.referer || root_path, alert: exception.message
-  end
-
   protected
 
   def configure_permitted_parameters
@@ -18,5 +14,9 @@ class ApplicationController < ActionController::Base
     if current_user.role == "Doctor"
       redirect_to root_path, alert: "You must be a patient to access this page."
     end
+  end
+
+  def set_is_doctor
+    @is_doctor = current_user.role == 'Doctor'
   end
 end
