@@ -44,10 +44,6 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find(params[:id])
   end
 
-  def set_is_doctor
-    @is_doctor = current_user.role == 'Doctor'
-  end
-
   def appointment_params
     params.require(:appointment).permit(:front_pic, :right_pic, :left_pic, :appointment_date, :appointment_time, :doctor_id)
   end

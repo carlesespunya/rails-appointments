@@ -7,12 +7,6 @@ class UsersController < ApplicationController
     @pagy, @users = pagy(@q.result.where(role: 'Doctor').order(created_at: :desc), items: 5)
   end
 
-  def show
-    @user = User.find(params[:id])
-
-    render layout: false
-  end
-
   def edit
   end
 
