@@ -14,13 +14,13 @@ class Appointment < ApplicationRecord
 
   def appointment_date_cannot_be_in_the_past
     if appointment_date < Date.today
-      errors.add(:appointment_date, "can't be in the past")
+      errors.add(:appointment_date, "➡️ The Booking can't be in the past")
     end
   end
 
   def doctor_availability
     if Appointment.where(doctor_id: doctor_id, appointment_date: appointment_date, appointment_time: appointment_time).exists?
-      errors.add(:appointment_time, "Already booked")
+      errors.add(:appointment_time, "➡️ Already Booked, try another date or time")
     end
   end
 end
