@@ -1,0 +1,25 @@
+<div class="card my-4">
+  <p class="text-right"><%= appointment_date(@appointment) %> at <%= appointment_time(@appointment) %></p>
+  <% if @is_doctor %>
+    <h1 class="card-title">
+      <%= avatar(@appointment.patient, 60) %>
+      <%= @appointment.patient.name%>
+    </h1>
+  <% else %>
+    <h1 class="card-title">
+      <%= avatar(@appointment.doctor, 60) %>
+      <%= @appointment.doctor.name%>
+    </h1>
+
+    <p class="card-subtitle">
+      <%= @appointment.doctor.city %>
+    </p>
+  <% end %>
+  <div class="card-body">
+    <%= appointment_pic(@appointment.front_pic) %>
+    <%= appointment_pic(@appointment.right_pic) %>
+    <%= appointment_pic(@appointment.left_pic) %>
+  </div>
+
+
+</div>

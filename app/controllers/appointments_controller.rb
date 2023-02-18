@@ -1,10 +1,25 @@
 class AppointmentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_patient, only: %i[new, create]
+  before_action :require_patient, only: %i[new create]
+  before_action :set_appointment, only: %i[show destroy]
 
+  def show
+    @is_doctor = current_user.role == 'Doctor'
+
+    render layout: false
+  end
 
   def index
-    @appointments = Appointment.all
+    @is_doctor = current_user.role == 'Doctor'
+
+    if @is_doctor
+      options = {doctor: current_user}
+    else
+      options = {patient: current_user}
+    end
+
+    @q = Appointment.ransack(params[:q])
+    @pagy, @appointments = pagy(@q.result.where(options).order(created_at: :desc), items: 5)
   end
 
   def new
@@ -29,10 +44,14 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment.destroy
 
-    redirect_to appointments_path, notice: "appointment was successfully destroyed."
+    redirect_to appointments_path, notice: "Appointment was successfully destroyed."
   end
 
   private
+
+  def set_appointment
+    @appointment = Appointment.find(params[:id])
+  end
 
   def appointment_params
     params.require(:appointment).permit(:front_pic, :right_pic, :left_pic, :appointment_date, :appointment_time, :doctor_id)
