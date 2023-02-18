@@ -1,4 +1,13 @@
-<h1>Users</h1>
+<h1>Doctors Directory</h1>
+
+<%= search_form_for @q, data: { turbo_frame: "search" } do |f| %>
+  <div class="relative">
+    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+      <%= heroicon "magnifying-glass" %>
+    </div>
+    <%= f.text_field :name_or_city_cont, class:"search-input p-3 pl-10 text-sm", onkeyup:"search()", placeholder: "Search ..." %>
+  </div>
+<% end %>
 
 <div class="table-responsive mt-8">
   <table>
@@ -24,10 +33,10 @@
             <%= mail_to user.email, 'data-tippy-content': 'Click to send an email' %>
           </td>
           <td>
-            <span data-tippy-content="<%= format_time(user.created_at) %>"><%= time_ago user.created_at %></span>
+            <%= user.city %>
           </td>
           <td>
-            <a data-modal-url="<%= "/users/#{user.id}" %>" data-modal-title="User details" class="btn btn-outline">Details</a>
+            <a data-modal-url="<%= "/users/#{user.id}" %>" data-modal-title="User details" class="btn btn-outline">Book Appointment</a>
           </td>
         </tr>
       <% end %>
