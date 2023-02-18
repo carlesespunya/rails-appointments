@@ -8,10 +8,10 @@ class AppointmentsController < ApplicationController
   end
 
   def new
-    if params[:user_id].blank?
+    if params[:doctor_id].blank?
       redirect_to users_path, alert: "Please select a doctor."
     else
-      @doctor = User.find(params[:user_id])
+      @doctor = User.find(params[:doctor_id])
       @appointment = Appointment.new
     end
   end
@@ -22,7 +22,7 @@ class AppointmentsController < ApplicationController
     if @appointment.save
       redirect_to appointments_path, notice: "appointment was successfully created."
     else
-      render :new, status: :unprocessable_entity
+      redirect_to new_appointment_path(doctor_id: appointment_params[:doctor_id]), alert: "Already Booked, try another date or time"
     end
   end
 

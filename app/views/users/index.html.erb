@@ -36,7 +36,7 @@
             <%= user.city %>
           </td>
           <td>
-            <%= link_to "Book Appointment", new_appointment_path(user_id: user.id), class: "btn btn-outline" %>
+            <%= link_to "Book Appointment", new_appointment_path(doctor_id: user.id), class: "btn btn-outline" %>
           </td>
         </tr>
       <% end %>
