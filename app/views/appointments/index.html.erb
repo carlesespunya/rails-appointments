@@ -2,7 +2,10 @@
 <% @appointments.each do |appointment| %>
   <p>Doctor: <%= appointment.doctor.name %></p>
   <p>City: <%= appointment.doctor.city %></p>
-  <p>Appointment Date: <%= appointment.appointment_date %></p>
-  <p>Appointment Time: <%= appointment.appointment_time %></p>
+  <p>Appointment Date: <%= appointment_date(appointment)%></p>
+  <p>Appointment Time: <%= appointment_time(appointment) %></p>
   <p>Appointment patient: <%= appointment.patient.name%></p>
+  <%= appointment_pic(appointment.front_pic) %>
+  <%= appointment_pic(appointment.right_pic) %>
+  <%= appointment_pic(appointment.left_pic) %>
 <% end %>

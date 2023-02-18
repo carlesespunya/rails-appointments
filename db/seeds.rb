@@ -1,5 +1,5 @@
-User.destroy_all
 Appointment.destroy_all
+User.destroy_all
 
 User.create!(
   name: "patient",

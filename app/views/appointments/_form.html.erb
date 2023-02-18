@@ -13,6 +13,21 @@
     <%= form.select :appointment_time, (9..18).map { |h| ["#{h}:00", "#{h}:00"] },  required: true %>
   </div>
 
+  <div>
+    <%= form.label :front_picture %>
+    <%= form.file_field :front_pic, accept: "image/*", required: true %>
+  </div>
+
+  <div>
+    <%= form.label :right_picture %>
+    <%= form.file_field :right_pic, accept: "image/*", required: true %>
+  </div>
+
+  <div>
+    <%= form.label :left_picture %>
+    <%= form.file_field :left_pic, accept: "image/*", required: true %>
+  </div>
+
   <div class="mt-4">
     <%= form.submit nil, class: 'btn' %>
   </div>
