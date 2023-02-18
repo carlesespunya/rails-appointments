@@ -1,6 +1,6 @@
-# 🚀 Rails + Ralix + Tailwind
+# Appointment Manager
 
-> Starter Kit to build modern Rails applications fast
+> Appointments Manager for doctors and patients
 
 Powered by:
 
@@ -16,7 +16,6 @@ Rails v7 application template ready to start building your next project, with a 
 - 🎨 Minimalistic and responsive, clean layout
 - 📦 Icons pack, via [Heroicons](https://heroicons.com)
 - 🔐 Authentication, via [Devise](https://github.com/heartcombo/devise)
-- 👥 Authorization, via [CanCanCan](https://github.com/CanCanCommunity/cancancan)
 - 🔍 Searching, via [Ransack](https://github.com/activerecord-hackery/ransack)
 - 🔢 Pagination, via [Pagy](https://github.com/ddnexus/pagy)
 - 📄 Static pages controller (About, Terms, ...)
