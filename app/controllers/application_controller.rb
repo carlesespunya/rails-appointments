@@ -13,4 +13,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :role, :city])
   end
 
+  private
+
+  def require_patient
+    if current_user.role == 'Doctor'
+      redirect_to root_path, alert: "You must be a doctor to access this page."
+    end
+  end
 end
