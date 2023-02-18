@@ -1,17 +1,14 @@
 class AppointmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_patient, only: %i[new create]
-  before_action :set_appointment, only: %i[show destroy]
+  before_action :set_appointment, only: %i[show]
+  before_action :set_is_doctor, only: %i[show index]
 
   def show
-    @is_doctor = current_user.role == 'Doctor'
-
     render layout: false
   end
 
   def index
-    @is_doctor = current_user.role == 'Doctor'
-
     if @is_doctor
       options = {doctor: current_user}
     else
@@ -41,16 +38,14 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  def destroy
-    @appointment.destroy
-
-    redirect_to appointments_path, notice: "Appointment was successfully destroyed."
-  end
-
   private
 
   def set_appointment
     @appointment = Appointment.find(params[:id])
+  end
+
+  def set_is_doctor
+    @is_doctor = current_user.role == 'Doctor'
   end
 
   def appointment_params
