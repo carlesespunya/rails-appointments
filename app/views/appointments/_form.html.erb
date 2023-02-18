@@ -1,0 +1,19 @@
+<%= form_with(model: appointment) do |form| %>
+  <%= render "application/error_messages", object: appointment %>
+
+  <%= form.hidden_field :doctor_id, value: doctor.id %>
+
+  <div>
+    <%= form.label :appointment_date %>
+    <%= form.date_field :appointment_date, min: Date.today %>
+  </div>
+
+  <div>
+    <%= form.label :appointment_time %>
+    <%= form.select :appointment_time, (9..18).map { |h| ["#{h}:00", "#{h}:00"] } %>
+  </div>
+
+  <div class="mt-4">
+    <%= form.submit nil, class: 'btn' %>
+  </div>
+<% end %>

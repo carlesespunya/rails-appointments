@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   def require_patient
     if current_user.role == 'Doctor'
-      redirect_to root_path, alert: "You must be a doctor to access this page."
+      redirect_to root_path, alert: "You must be a patient to access this page."
     end
   end
 end

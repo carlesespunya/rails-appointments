@@ -36,7 +36,7 @@
             <%= user.city %>
           </td>
           <td>
-            <a data-modal-url="<%= "/users/#{user.id}" %>" data-modal-title="User details" class="btn btn-outline">Book Appointment</a>
+            <a data-modal-url="<%= new_appointment_path(user_id: user.id) %>" data-modal-title="Book an Appointment" class="btn btn-outline">Book Appointment</a>
           </td>
         </tr>
       <% end %>

@@ -1,0 +1,7 @@
+<h1>Appointments List</h1>
+<% @appointments.each do |appointment| %>
+  <p>Doctor: <%= appointment.doctor.name %></p>
+  <p>City: <%= appointment.doctor.city %></p>
+  <p>Appointment Date: <%= appointment.appointment_date %></p>
+  <p>Appointment patient: <%= appointment.patient.name%></p>
+<% end %>

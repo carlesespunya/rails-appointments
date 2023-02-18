@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_patient, only: [:index]
+  before_action :require_patient, only: %i[index]
 
   def index
     @q = User.ransack(params[:q])
