@@ -19,14 +19,6 @@ Rails v7 application configured with a modern front-end stack and some extras:
 - 🔍 Searching, via [Ransack](https://github.com/activerecord-hackery/ransack)
 - 🔢 Pagination, via [Pagy](https://github.com/ddnexus/pagy)
 
-## Install
-
-Clone this repository, then `cd` into the folder and run:
-
-```
-> bin/setup
-```
-
 ## Run
 
 Start the development server:
