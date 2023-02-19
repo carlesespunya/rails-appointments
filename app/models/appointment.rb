@@ -10,11 +10,13 @@ class Appointment < ApplicationRecord
   validate :appointment_date_and_time_validations
   validate :doctor_availability
   validate :attachments_presence
+  validate :doctor_role
+  validate :patient_role
 
   private
 
   def appointment_date_and_time_validations
-    if !appointment_date.is_a?(Date) || !appointment_time.is_a?(ActiveSupport::TimeWithZone)
+    if !appointment_date.is_a?(ActiveSupport::TimeWithZone) || !appointment_time.is_a?(ActiveSupport::TimeWithZone)
       errors.add(:appointment_date, "➡️ Appointment date and time must be dates")
     elsif appointment_date < Date.today
       errors.add(:appointment_date, "➡️ The Booking can't be in the past")
@@ -30,6 +32,18 @@ class Appointment < ApplicationRecord
   def attachments_presence
     if !front_pic.attached? || !right_pic.attached? || !left_pic.attached?
       errors.add(:base, "➡️ Please attach all required images")
+    end
+  end
+
+  def doctor_role
+    if doctor && doctor.role != "Doctor"
+      errors.add(:doctor, "➡️ The doctor must have a role of 'Doctor'")
+    end
+  end
+
+  def patient_role
+    if patient && patient.role != "Patient"
+      errors.add(:doctor, "➡️ The patient must have a role of 'Patient'")
     end
   end
 end
