@@ -12,11 +12,7 @@ class User < ApplicationRecord
   has_many :appointments
 
   validates :role, inclusion: { in: ROLES, message: "Role must be 'Patient' or 'Doctor'" }
-  validates :name, presence: true, length: { maximum: 50 }
-
-  def name
-    @name ||= self[:name].presence || email.split("@").first
-  end
+  validates :name, presence: true, length: { maximum: 20 }
 
   protected
 

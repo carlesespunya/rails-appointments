@@ -34,7 +34,7 @@ class AppointmentsController < ApplicationController
     if @appointment.save
       redirect_to appointments_path, notice: "appointment was successfully created."
     else
-      redirect_to new_appointment_path(doctor_id: appointment_params[:doctor_id]), alert: @appointment.errors.full_messages.join("<br>").html_safe
+      redirect_to new_appointment_path(doctor_id: appointment_params[:doctor_id]), alert: @appointment.errors.full_messages.join(" / ").html_safe
     end
   end
 
