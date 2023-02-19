@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Appointment, type: :model do
-  let(:doctor) { User.create(name: 'Dr. John', email: 'doctor@example.com', password: 'password', role: 'Doctor') }
-  let(:patient) { User.create(name: 'Jane', email: 'patient@example.com', password: 'password', role: 'Patient') }
+  let(:doctor) { User.create(name: 'Doc', email: 'doctor@example.com', password: 'password', role: 'Doctor') }
+  let(:patient) { User.create(name: 'Pat', email: 'patient@example.com', password: 'password', role: 'Patient') }
 
   describe 'validations' do
     context 'when all attributes are valid' do
