@@ -7,14 +7,16 @@ class Appointment < ApplicationRecord
   has_one_attached :left_pic
 
   validates :doctor, :patient, :appointment_date, :appointment_time, presence: true
-  validate :appointment_date_cannot_be_in_the_past
+  validate :appointment_date_and_time_validations
   validate :doctor_availability
   validate :attachments_presence
 
   private
 
-  def appointment_date_cannot_be_in_the_past
-    if appointment_date < Date.today
+  def appointment_date_and_time_validations
+    if !appointment_date.is_a?(Date) || !appointment_time.is_a?(ActiveSupport::TimeWithZone)
+      errors.add(:appointment_date, "➡️ Appointment date and time must be dates")
+    elsif appointment_date < Date.today
       errors.add(:appointment_date, "➡️ The Booking can't be in the past")
     end
   end
